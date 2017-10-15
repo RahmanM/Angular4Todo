@@ -1,0 +1,25 @@
+<div class="container">
+
+  <div *ngIf="showDetails()">
+    <table class="table table-inverse">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Completed?</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let todo of todoList">
+            <th scope="row">{{todo.description}}</th>
+            <td><input name="completed" type="checkbox" [(ngModel)]="todo.completed" (change)="todoChanged(todo)" /></td>
+            <td><button class="btn btn-danger" (click)="removeTodo(todo)">Delete</button></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
