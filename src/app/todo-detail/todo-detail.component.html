@@ -13,8 +13,19 @@
 
         <tr *ngFor="let todo of todoList">
             <th scope="row">{{todo.description}}</th>
-            <td><input name="completed" type="checkbox" [(ngModel)]="todo.completed" (change)="todoChanged(todo)" /></td>
-            <td><button class="btn btn-danger" (click)="removeTodo(todo)">Delete</button></td>
+            <td>
+              <input 
+                      name="completed" 
+                      type="checkbox" 
+                      [(ngModel)]="todo.completed" 
+                      (change)="todoChanged(todo)" />
+            </td>
+            <td>
+              <button 
+                      class="btn btn-danger" 
+                      (click)="removeTodo(todo)">Delete
+              </button>
+            </td>
         </tr>
 
       </tbody>

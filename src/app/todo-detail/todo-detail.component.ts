@@ -29,11 +29,11 @@ export class TodoDetailComponent implements OnInit {
   }
 
   todoChanged(todo: Todo){
-    console.log("inside details" + todo);
-
+   
     this.todoList.forEach(element => {
       if(element.description===todo.description){
         element.completed=todo.completed;
+        // broadcast the message through the shared service observable!
         this.todoService.announceTodoListChanged(this.todoList);
       }
 

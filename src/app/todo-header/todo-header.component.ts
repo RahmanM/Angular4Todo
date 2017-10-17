@@ -10,18 +10,16 @@ import { TodoService } from "../services/TodoService";
 })
 export class TodoHeaderComponent implements OnInit {
 
-  todo : Todo = new Todo();;
+  todo: Todo = new Todo();;
 
-  constructor(private todoService : TodoService) { 
+  constructor(private todoService: TodoService) {
   }
 
   ngOnInit() {
   }
 
-  addTodo(todo){
-    console.log(todo)
-    this.todoService.announceTodoAdded({completed:false, description: todo.description});
+  addTodo(todo) {
+    this.todoService.announceTodoAdded({ completed: false, description: todo.description });
     todo.description = "";
   }
-
 }
