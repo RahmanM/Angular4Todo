@@ -10,9 +10,7 @@ export class TodoPipePipe implements PipeTransform {
     if(!filter){
       return todos;
     }else{
-      return todos.filter(item => item.description === filter);
-    }
-    
+      return todos.filter(item => item.description.indexOf(filter)>-1);
+    } 
   }
-
 }
