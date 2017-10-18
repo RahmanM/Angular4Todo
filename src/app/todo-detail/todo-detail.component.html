@@ -1,33 +1,37 @@
 <div class="container">
 
   <div *ngIf="showDetails()">
+
+    <div>
+        <todo-search (searchChangedEvent)="applyFilter($event)"></todo-search>
+    </div>
+
     <table class="table table-inverse">
       <thead>
         <tr>
-          <th>Description</th>
-          <th>Completed?</th>
-          <th></th>
+          <th style="width:70%">Description</th>
+          <th style="width:20%">Completed?</th>
+          <th style="width:10%"></th>
         </tr>
       </thead>
-      <tbody>
-
-        <tr *ngFor="let todo of todoList">
-            <th scope="row">{{todo.description}}</th>
-            <td>
-              <input 
-                      name="completed" 
-                      type="checkbox" 
-                      [(ngModel)]="todo.completed" 
-                      (change)="todoChanged(todo)" />
-            </td>
-            <td>
-              <button 
-                      class="btn btn-danger" 
-                      (click)="removeTodo(todo)">Delete
-              </button>
-            </td>
-        </tr>
-
+      <tbody>        
+          <tr *ngFor="let todo of todoList | todoPipe:descriptionFilter;">
+                <td scope="row">{{todo.description}}</td>
+                <td>
+                  <input 
+                          name="completed" 
+                          type="checkbox" 
+                          [(ngModel)]="todo.completed" 
+                          (change)="todoChanged(todo)" />
+                </td>
+                <td class="pull-right">
+                  <button 
+                          class="btn btn-danger btn-sm" 
+                          (click)="removeTodo(todo)">Delete
+                  </button>
+                </td>  
+          </tr>
+             
       </tbody>
     </table>
 

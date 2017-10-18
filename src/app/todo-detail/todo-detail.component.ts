@@ -10,6 +10,8 @@ import { TodoService } from "../services/TodoService";
 export class TodoDetailComponent implements OnInit {
 
   todoList : Array<Todo>=[];
+
+  descriptionFilter : string;
   
   constructor(private todoService: TodoService) {
 
@@ -42,6 +44,11 @@ export class TodoDetailComponent implements OnInit {
 
   showDetails(){
     return this.todoList && this.todoList.length>0;
+  }
+
+  // Emitted from the from the child search component
+  applyFilter(filter){
+    this.descriptionFilter = filter;
   }
  
 }

@@ -7,13 +7,18 @@ import { TodoHeaderComponent } from './todo-header/todo-header.component';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { TodoService } from "./services/TodoService";
 import { TodoCountsComponent } from './todo-counts/todo-counts.component';
+import { TodoSearchComponent } from './todo-search/todo-search.component';
+import { TodoPipePipe } from './todo-pipe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoHeaderComponent,
     TodoDetailComponent,
-    TodoCountsComponent
+    TodoCountsComponent,
+    TodoSearchComponent,
+    TodoPipePipe
+    
   ],
   imports: [
     BrowserModule,
