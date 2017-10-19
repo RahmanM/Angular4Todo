@@ -1,7 +1,12 @@
 <div class="input-group">
 
-  <input type="text" class="form-control" name="search" placeholder="Search..." 
-  [(ngModel)]="searchCriteria" #input="ngModel">
+  <input  type="text" 
+          class="form-control" 
+          name="search" 
+          placeholder="Search..." 
+          [(ngModel)]="searchCriteria" #input="ngModel"
+          (keyup)="search()"
+          >
 
   <span class="input-group-btn">
       <button class="btn btn-primary" type="button" name="search" (click)="search()" >Search</button>

@@ -23,6 +23,7 @@ export class TodoSearchComponent implements OnInit {
   }
 
   search(){
+    console.log(this.searchCriteria);
      this.searchChangedEvent.emit(this.searchCriteria);  
   }
 

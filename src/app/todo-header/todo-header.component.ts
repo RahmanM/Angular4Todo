@@ -20,6 +20,6 @@ export class TodoHeaderComponent implements OnInit {
 
   addTodo(todo) {
     this.todoService.announceTodoAdded({ completed: false, description: todo.description, show: true });
-    this.todo.description = null;
+    //this.todo.description = null;
   }
 }

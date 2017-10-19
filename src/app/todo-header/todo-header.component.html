@@ -1,7 +1,7 @@
 <div>
 
   <div class="container">
-    <form name="todoForm" #form="ngForm">
+    <form name="todoForm" #form>
 
       <div class="input-group ">
         <input  name="description" 
@@ -12,22 +12,22 @@
                 placeholder="New todo"
                 required 
                 minlength="3" 
-                #description="ngModel" 
+                #descriptionFld 
                 (keyup.enter)="addTodo(todo);" >
 
           <span class="input-group-btn">           
                 <button 
                     type="button" 
-                    (click)="addTodo(todo)"
+                    (click)="addTodo(todo); form.reset();"
                     class="btn btn-primary"
                     [disabled]="form.invalid"
                 >Save</button>
           </span>
       </div>
 
-      <div class="alert alert-danger" *ngIf="((description.dirty || description.touched)) && (description.invalid)">
-        <div *ngIf="description.errors.required">Description is required.</div>
-        <div *ngIf="description.errors.minlength">Description should be at least 3 characters.</div>
+      <div class="alert alert-danger" *ngIf="((descriptionFld.dirty || descriptionFld.touched)) && (descriptionFld.invalid)">
+        <div *ngIf="descriptionFld.errors.required">Description is required.</div>
+        <div *ngIf="descriptionFld.errors.minlength">Description should be at least 3 characters.</div>
       </div>
 
     </form>
