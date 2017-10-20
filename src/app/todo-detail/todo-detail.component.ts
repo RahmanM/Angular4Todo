@@ -1,11 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, trigger, transition, style, animate } from '@angular/core';
 import { Todo } from "../modals/Todo";
 import { TodoService } from "../services/TodoService";
+
+
 
 @Component({
   selector: 'todo-detail',
   templateUrl: './todo-detail.component.html',
   styleUrls: ['./todo-detail.component.css'],
+  animations: [
+	trigger("fade", [
+		transition('void <=> *', [
+			style({opacity:0, backgroundColor: 'grey'}),
+			animate(500)
+		])
+	])
+]
 })
 export class TodoDetailComponent implements OnInit {
 

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { TodoHeaderComponent } from './todo-header/todo-header.component';
@@ -22,7 +23,8 @@ import { TodoPipePipe } from './todo-pipe.pipe';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]
