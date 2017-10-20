@@ -1,6 +1,7 @@
-import { Component, OnInit, trigger, transition, style, animate } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Todo } from "../modals/Todo";
 import { TodoService } from "../services/TodoService";
+import { fade } from "../todo-animations/Animation";
 
 
 
@@ -9,13 +10,8 @@ import { TodoService } from "../services/TodoService";
   templateUrl: './todo-detail.component.html',
   styleUrls: ['./todo-detail.component.css'],
   animations: [
-	trigger("fade", [
-		transition('void <=> *', [
-			style({opacity:0, backgroundColor: 'grey'}),
-			animate(500)
-		])
-	])
-]
+                fade
+              ]
 })
 export class TodoDetailComponent implements OnInit {
 
