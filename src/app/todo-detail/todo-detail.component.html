@@ -15,12 +15,13 @@
         </tr>
       </thead>
       <tbody>        
-          <tr @fade *ngFor="let todo of todoList | todoPipe:descriptionFilter;">
+          <tr @fade *ngFor="let todo of todoList | todoPipe:descriptionFilter;" >
                 <td scope="row">{{todo.description}}</td>
                 <td>
                   <input 
                           name="completed" 
                           type="checkbox" 
+                          [@highlight] = "completedState"
                           [(ngModel)]="todo.completed" 
                           (change)="todoChanged(todo)" />
                 </td>

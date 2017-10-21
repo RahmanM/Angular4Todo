@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Todo } from "../modals/Todo";
 import { TodoService } from "../services/TodoService";
-import { fade } from "../todo-animations/Animation";
+import { fade, highlight } from "../todo-animations/Animation";
 
 
 
@@ -10,7 +10,8 @@ import { fade } from "../todo-animations/Animation";
   templateUrl: './todo-detail.component.html',
   styleUrls: ['./todo-detail.component.css'],
   animations: [
-                fade
+                fade,
+                highlight
               ]
 })
 export class TodoDetailComponent implements OnInit {
@@ -18,12 +19,16 @@ export class TodoDetailComponent implements OnInit {
   todoList : Array<Todo>=[];
 
   descriptionFilter : string;
+
+  completedState : string;
   
   constructor(private todoService: TodoService) {
 
+    /* Subscribing to todo added observable */
     todoService.todoAddedObservable.subscribe(
       todo => {
         this.todoList.push(todo);
+        /* inform subscribers e.g. todo count component to update their details */
         todoService.announceTodoListChanged(this.todoList);
       });
    }
@@ -44,13 +49,20 @@ export class TodoDetailComponent implements OnInit {
         this.todoService.announceTodoListChanged(this.todoList);
       }
     });
+
+    /* Applies custom animation based on checkbox toggling */
+    if(todo.completed){
+      this.completedState = "completed";
+    }else{
+      this.completedState = "notcompleted";
+    }
   }
 
   showDetails(){
     return this.todoList && this.todoList.length>0;
   }
 
-  // Emitted from the from the child search component
+  // Emitted from the child search component this will be used in the ngFor to filter todos
   applyFilter(filter){
     this.descriptionFilter = filter;
   }
