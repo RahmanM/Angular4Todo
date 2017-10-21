@@ -16,13 +16,13 @@
       </thead>
       <tbody>        
           <tr @fade *ngFor="let todo of todoList | todoPipe:descriptionFilter;" >
-                <td scope="row">{{todo.description}}</td>
+                <td scope="row">{{todo.Description}}</td>
                 <td>
                   <input 
                           name="completed" 
                           type="checkbox" 
                           [@highlight] = "completedState"
-                          [(ngModel)]="todo.completed" 
+                          [(ngModel)]="todo.Completed" 
                           (change)="todoChanged(todo)" />
                 </td>
                 <td class="pull-right">
@@ -31,6 +31,9 @@
                           (click)="removeTodo(todo)">Delete
                   </button>
                 </td>  
+                <td hidden>
+                  {{todo.Id}}
+                </td>
           </tr>
              
       </tbody>

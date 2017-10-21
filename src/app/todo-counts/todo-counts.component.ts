@@ -20,7 +20,7 @@ export class TodoCountsComponent implements OnInit {
       todoService.todoListChangedObservable.subscribe(list=> {
         this.todoList = list;
         this.totalTodos =  this.todoList.length;
-        this.totalCompleted = this.todoList.filter(t=> t.completed===true).length;
+        this.totalCompleted = this.todoList.filter(t=> t.Completed===true).length;
         this.totalNotCompleted = this.totalTodos - this.totalCompleted;
       });
    }

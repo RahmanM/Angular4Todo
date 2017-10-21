@@ -34,24 +34,31 @@ export class TodoDetailComponent implements OnInit {
    }
 
   ngOnInit() {
+    /* Load todos form the database */
+    this.todoService.loadTodos().subscribe(s=> this.todoList = s);
   }
 
   removeTodo(todo: Todo){
-    this.todoList.splice(this.todoList.indexOf(todo), 1);
-    this.todoService.announceTodoListChanged(this.todoList);
+    this.todoService.deleteTodo(todo.Id).subscribe(r=> {
+      this.todoList.splice(this.todoList.indexOf(todo), 1);
+      this.todoService.announceTodoListChanged(this.todoList);
+    });   
   }
 
   todoChanged(todo: Todo){
     this.todoList.forEach(element => {
-      if(element.description===todo.description){
-        element.completed=todo.completed;
-        // broadcast the message through the shared service observable!
-        this.todoService.announceTodoListChanged(this.todoList);
+      if(element.Id===todo.Id){
+        element.Completed=todo.Completed;
+   
+        this.todoService.updateTodo(todo).subscribe(s=> {
+          // broadcast the message through the shared service observable!
+          this.todoService.announceTodoListChanged(this.todoList);
+        })
       }
     });
 
     /* Applies custom animation based on checkbox toggling */
-    if(todo.completed){
+    if(todo.Completed){
       this.completedState = "completed";
     }else{
       this.completedState = "notcompleted";

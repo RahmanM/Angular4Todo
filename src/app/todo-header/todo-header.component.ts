@@ -10,7 +10,7 @@ import { TodoService } from "../services/TodoService";
 })
 export class TodoHeaderComponent implements OnInit {
 
-  todo: Todo = new Todo();;
+  todo: Todo = new Todo("", false, false);;
 
   constructor(private todoService: TodoService) {
   }
@@ -18,8 +18,9 @@ export class TodoHeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  addTodo(todo) {
-    this.todoService.announceTodoAdded({ completed: false, description: todo.description, show: true });
-    //this.todo.description = null;
+  addTodo(todo:Todo) {
+    this.todoService.addTodo(
+      new Todo(todo.Description, false, true)
+    ).subscribe(a=>  this.todoService.announceTodoAdded(a));
   }
 }
