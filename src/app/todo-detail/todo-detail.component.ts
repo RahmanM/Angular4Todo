@@ -3,8 +3,6 @@ import { Todo } from "../modals/Todo";
 import { TodoService } from "../services/TodoService";
 import { fade, highlight } from "../todo-animations/Animation";
 
-
-
 @Component({
   selector: 'todo-detail',
   templateUrl: './todo-detail.component.html',
@@ -34,10 +32,14 @@ export class TodoDetailComponent implements OnInit {
    }
 
   ngOnInit() {
-    /* Load todos form the database */
-    this.todoService.loadTodos().subscribe(s=> this.todoList = s);
+    /** Load todos form the database */
+    this.todoService.loadTodos().subscribe(s=> {
+      this.todoList = s;
+      this.todoService.announceTodoListChanged(this.todoList);
+    });
   }
 
+  /** removes todo from the list and notifies the subscribers */
   removeTodo(todo: Todo){
     this.todoService.deleteTodo(todo.Id).subscribe(r=> {
       this.todoList.splice(this.todoList.indexOf(todo), 1);
@@ -45,6 +47,7 @@ export class TodoDetailComponent implements OnInit {
     });   
   }
 
+  /** Changes completed or not and notifies the subscribers */
   todoChanged(todo: Todo){
     this.todoList.forEach(element => {
       if(element.Id===todo.Id){
@@ -57,20 +60,24 @@ export class TodoDetailComponent implements OnInit {
       }
     });
 
-    /* Applies custom animation based on checkbox toggling */
+    /** Applies custom animation based on checkbox toggling */
     if(todo.Completed){
       this.completedState = "completed";
+      setTimeout(s=>
+        this.completedState = "notcompleted",1000
+      )
     }else{
       this.completedState = "notcompleted";
     }
   }
 
-  showDetails(){
+  /** To show the details or not */
+  showDetails = () : boolean =>  {
     return this.todoList && this.todoList.length>0;
   }
 
-  // Emitted from the child search component this will be used in the ngFor to filter todos
-  applyFilter(filter){
+  /** Emitted from the child search component this will be used in the ngFor to filter todos */
+  applyFilter = (filter) => {
     this.descriptionFilter = filter;
   }
  

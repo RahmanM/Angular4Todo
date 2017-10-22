@@ -13,7 +13,7 @@ export let fade = trigger("fade", [
 /* Custom animation that will trigger on checking and unchecking the check boxes */
 export let highlight = trigger("highlight", [
 	state('completed',
-		style({ opacity: 0.5, outline: '3px solid black' }),
+		style({ opacity: 0.5, outline: '1px solid blue' }),
 	),
 	state('notcompleted',
 		style({ opacity: 1 })

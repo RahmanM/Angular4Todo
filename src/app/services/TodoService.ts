@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
 import { Todo } from "../modals/Todo";
 import { Observable } from "rxjs/Observable";
-import { Http, Response } from "@angular/http";
 import "rxjs/add/operator/map";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class TodoService {
@@ -17,7 +17,7 @@ export class TodoService {
   private url : string = "http://localhost/Angular4Todo/api/todo";
   // private url : string = "http://localhost:5898/api/todo";
  
-  constructor(private http : Http) {
+  constructor(private httpClient : HttpClient) {
     
   }
  
@@ -34,25 +34,23 @@ export class TodoService {
   }
 
   loadTodos = () : Observable<Array<Todo>> => {
-    var response = this.http.get(this.url)
-                            .map(response => <Array<Todo>> response.json());
+    var response = this.httpClient.get<Array<Todo>>(this.url);
     return response;
   }
 
   addTodo = (todo : Todo) : Observable<Todo> => {
-    var response = this.http.post(this.url, todo).map(response => <Todo> response.json());
+    var response = this.httpClient.post<Todo>(this.url, todo);
     return response;
   }
 
   deleteTodo = (id : string) : Observable<number> => {
-    var response = this.http.delete(this.url + "/" + id.split("/")[1]);
-    return response.map(response => response.status);;
+    var response = this.httpClient.delete<any>(this.url + "/" + id.split("/")[1]);
+    return response;;
   }
 
   updateTodo = (todo:Todo) : Observable<Todo> => {
-    console.log(todo);
-    var response = this.http.put(this.url, todo);
-    return response.map(response => <Todo> response.json());;
+    var response = this.httpClient.put<Todo>(this.url, todo);
+    return response;
   }
 
 }
