@@ -1,9 +1,11 @@
 <div class="container">
 
+  <spinner-component textToAnimate="Loading..." *ngIf="!showDetails()"></spinner-component>
+
   <div *ngIf="showDetails()">
 
     <div>
-        <todo-search (searchChangedEvent)="applyFilter($event)"></todo-search>
+        <todo-search placeholder="Search for todo..." (searchChangedEvent)="applyFilter($event)"></todo-search>
     </div>
 
     <table class="table table-inverse">

@@ -13,6 +13,7 @@ import { TodoService } from "./services/TodoService";
 import { TodoCountsComponent } from './todo-counts/todo-counts.component';
 import { TodoSearchComponent } from './todo-search/todo-search.component';
 import { TodoPipePipe } from './todo-pipe.pipe';
+import { SpinnerComponent } from './spinner-component/spinner-component.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TodoPipePipe } from './todo-pipe.pipe';
     TodoDetailComponent,
     TodoCountsComponent,
     TodoSearchComponent,
-    TodoPipePipe
+    TodoPipePipe,
+    SpinnerComponent
     
   ],
   imports: [

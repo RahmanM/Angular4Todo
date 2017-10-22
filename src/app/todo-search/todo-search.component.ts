@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'todo-search',
@@ -11,6 +11,9 @@ export class TodoSearchComponent implements OnInit {
 
   @Output()
   searchChangedEvent : EventEmitter<string> = new EventEmitter<string>();
+
+  @Input()
+  placeholder : string;
   
   constructor() { }
 
@@ -25,6 +28,10 @@ export class TodoSearchComponent implements OnInit {
   search(){
     console.log(this.searchCriteria);
      this.searchChangedEvent.emit(this.searchCriteria);  
+  }
+
+  getPlaceholder(){
+    return this.placeholder ? this.placeholder : "Search...";
   }
 
 }

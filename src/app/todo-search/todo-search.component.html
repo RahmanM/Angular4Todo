@@ -3,7 +3,7 @@
   <input  type="text" 
           class="form-control" 
           name="search" 
-          placeholder="Search..." 
+          placeholder="{{getPlaceholder()}}" 
           [(ngModel)]="searchCriteria" #input="ngModel"
           (keyup)="search()"
           >
