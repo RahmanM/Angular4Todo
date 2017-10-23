@@ -1,19 +1,17 @@
 <div>
 
-  <div class="container">
-    <form name="todoForm" #form="ngForm">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Todo
+    </div>
 
-      <div class="input-group ">
-        <input  name="description" 
-                type="text" 
-                [(ngModel)]="todo.Description" 
-                class="form-control" 
-                id="todoDescription" 
-                placeholder="New todo"
-                required 
-                minlength="3" 
-                #descriptionFld="ngModel" 
-                (keyup.enter)="addTodo(todo);" >
+    <div class="panel-body">
+
+      <form name="todoForm" #form="ngForm">
+
+        <div class="input-group ">
+          <input name="description" type="text" [(ngModel)]="todo.Description" class="form-control" id="todoDescription" placeholder="New todo"
+            required minlength="3" #descriptionFld="ngModel" (keyup.enter)="addTodo(todo);">
 
           <span class="input-group-btn">           
                 <button 
@@ -23,14 +21,16 @@
                     [disabled]="form.invalid"
                 >Save</button>
           </span>
-      </div>
+        </div>
 
-      <div class="alert alert-danger" *ngIf="((descriptionFld.dirty || descriptionFld.touched)) && (descriptionFld.invalid)" >
-        <div *ngIf="descriptionFld.errors.required">Description is required.</div>
-        <div *ngIf="descriptionFld.errors.minlength">Description should be at least 3 characters.</div>
-      </div>
+        <div class="alert alert-danger" *ngIf="((descriptionFld.dirty || descriptionFld.touched)) && (descriptionFld.invalid)">
+          <div *ngIf="descriptionFld.errors.required">Description is required.</div>
+          <div *ngIf="descriptionFld.errors.minlength">Description should be at least 3 characters.</div>
+        </div>
 
-    </form>
+      </form>
+
+    </div>
   </div>
 
 </div>

@@ -1,46 +1,45 @@
-<div class="container">
-
-  <spinner-component textToAnimate="Loading..." *ngIf="!showDetails()"></spinner-component>
-
-  <div *ngIf="showDetails()">
-
-    <div>
-        <todo-search placeholder="Search for todo..." (searchChangedEvent)="applyFilter($event)"></todo-search>
-    </div>
-
-    <table class="table table-inverse">
-      <thead>
-        <tr>
-          <th style="width:70%">Description</th>
-          <th style="width:20%">Completed?</th>
-          <th style="width:10%"></th>
-        </tr>
-      </thead>
-      <tbody>        
-          <tr @fade *ngFor="let todo of todoList | todoPipe:descriptionFilter;" >
-                <td scope="row">{{todo.Description}}</td>
-                <td>
-                  <input 
-                          name="completed" 
-                          type="checkbox" 
-                          [@highlight] = "completedState"
-                          [(ngModel)]="todo.Completed" 
-                          (change)="todoChanged(todo)" />
-                </td>
-                <td class="pull-right">
-                  <button 
-                          class="btn btn-danger btn-sm" 
-                          (click)="removeTodo(todo)">Delete
-                  </button>
-                </td>  
-                <td hidden>
-                  {{todo.Id}}
-                </td>
-          </tr>
-             
-      </tbody>
-    </table>
-
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Todo details
   </div>
 
+  <div class="panel-body">
+
+    <spinner-component textToAnimate="Loading..." *ngIf="loading"></spinner-component>
+
+    <div *ngIf="showDetails()">
+
+      <div>
+        <todo-search placeholder="Search for todo..." (searchChangedEvent)="applyFilter($event)"></todo-search>
+      </div>
+
+      <table class="table table-inverse">
+        <thead>
+          <tr>
+            <th style="width:70%">Description</th>
+            <th style="width:20%">Completed?</th>
+            <th style="width:10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr @fade *ngFor="let todo of todoList | todoPipe:descriptionFilter;">
+            <td scope="row">{{todo.Description}}</td>
+            <td>
+              <input name="completed" type="checkbox" [@highlight]="completedState" [(ngModel)]="todo.Completed" (change)="todoChanged(todo)"
+              />
+            </td>
+            <td class="pull-right">
+              <button class="btn btn-danger btn-sm" (click)="removeTodo(todo)">Delete
+                  </button>
+            </td>
+            <td hidden>
+              {{todo.Id}}
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
 </div>

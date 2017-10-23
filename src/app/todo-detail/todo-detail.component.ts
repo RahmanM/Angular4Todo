@@ -19,6 +19,8 @@ export class TodoDetailComponent implements OnInit {
   descriptionFilter : string;
 
   completedState : string;
+
+  loading : boolean = false;
   
   constructor(private todoService: TodoService) {
 
@@ -32,10 +34,12 @@ export class TodoDetailComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.loading = true;
     /** Load todos form the database */
     this.todoService.loadTodos().subscribe(s=> {
       this.todoList = s;
       this.todoService.announceTodoListChanged(this.todoList);
+      this.loading = false;
     });
   }
 
@@ -73,7 +77,7 @@ export class TodoDetailComponent implements OnInit {
 
   /** To show the details or not */
   showDetails = () : boolean =>  {
-    return this.todoList && this.todoList.length>0;
+    return this.todoList && this.todoList.length > 0;
   }
 
   /** Emitted from the child search component this will be used in the ngFor to filter todos */
