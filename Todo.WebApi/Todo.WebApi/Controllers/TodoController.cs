@@ -32,7 +32,7 @@ namespace Todos.WebApi.Controllers
     {
       using (var session = RavenDocumentHelper.Store.OpenSession())
       {
-        var newTodo = new Todo() { Description = todo.Description, Completed = todo.Completed };
+        var newTodo = new Todo() { Description = todo.Description, Completed = todo.Completed, CategoryId = todo.CategoryId };
         session.Store(newTodo);
         todo.Id = newTodo.Id;
         session.SaveChanges();
@@ -57,6 +57,7 @@ namespace Todos.WebApi.Controllers
         {
           todoToUpdate.Description = todo.Description;
           todoToUpdate.Completed = todo.Completed;
+          todoToUpdate.CategoryId = todo.CategoryId;
           session.SaveChanges();
         }
       }
@@ -83,5 +84,7 @@ namespace Todos.WebApi.Controllers
 
       }
     }
+
+
   }
 }
