@@ -16,12 +16,10 @@ import { NotificationService } from "../services/NotificationService";
 export class TodoDetailComponent implements OnInit {
 
   todoList : Array<Todo>=[];
-
   descriptionFilter : string;
-
   completedState : string;
-
   loading : boolean = false;
+  categoryFilter : number;
   
   constructor(private todoService: TodoService, private notificationService : NotificationService) {
 
@@ -32,6 +30,12 @@ export class TodoDetailComponent implements OnInit {
         /* inform subscribers e.g. todo count component to update their details */
         notificationService.notifyTodoListChanged(this.todoList);
       });
+
+      // User has changed the cateogy id of the category component, so filter todos
+      notificationService.selectedCategoryChangedObservable.subscribe(id=>{
+        this.categoryFilter = id;
+        console.log(id);
+      })
    }
 
   ngOnInit() {
@@ -49,7 +53,7 @@ export class TodoDetailComponent implements OnInit {
     this.todoService.deleteTodo(todo.Id).subscribe(r=> {
       this.todoList.splice(this.todoList.indexOf(todo), 1);
       this.notificationService.notifyTodoListChanged(this.todoList);
-      this.notificationService.announceTodoDeleted(todo);
+      this.notificationService.notifyTodoDeleted(todo);
     });   
   }
 

@@ -44,4 +44,13 @@ export class TodoCategoryComponent implements OnInit {
 
   }
 
+  categorySelected(id:number){
+    this.notificationService.notifyselectedCategoryChanged(id);
+  }
+
+  categoryReset(){
+    this.notificationService.notifyselectedCategoryChanged(0);
+    console.log("clicked")
+  }
+
 }

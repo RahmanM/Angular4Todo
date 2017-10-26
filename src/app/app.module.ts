@@ -12,7 +12,7 @@ import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { TodoService } from "./services/TodoService";
 import { TodoCountsComponent } from './todo-counts/todo-counts.component';
 import { TodoSearchComponent } from './todo-search/todo-search.component';
-import { TodoPipePipe } from './todo-pipe.pipe';
+import { TodoPipePipe, CategoryPipe } from './todo-pipe.pipe';
 import { SpinnerComponent } from './spinner-component/spinner-component.component';
 import { TodoCategoryComponent } from './todo-category/todo-category.component';
 import { NotificationService } from "./services/NotificationService";
@@ -25,6 +25,7 @@ import { NotificationService } from "./services/NotificationService";
     TodoCountsComponent,
     TodoSearchComponent,
     TodoPipePipe,
+    CategoryPipe,
     SpinnerComponent,
     TodoCategoryComponent
     

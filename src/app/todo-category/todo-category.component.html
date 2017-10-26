@@ -1,11 +1,11 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    Categories
+    Categories <span (click)="categoryReset();" class="pull-right glyphicon glyphicon-refresh"></span>
   </div>
   <div class="panel-body">
     <ul class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let category of categories">
-        <a href="#">{{category.Description}}</a>
+        <a href="#" (click)="categorySelected(category.Id)">{{category.Description}}</a>
         <span class="badge badge-primary badge-pill">{{category.Count}}</span>
       </li>
      </ul>
