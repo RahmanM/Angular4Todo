@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from "../modals/Todo";
 import { TodoService } from "../services/TodoService";
+import { NotificationService } from "../services/NotificationService";
 
 @Component({
   selector: 'todo-counts',
@@ -15,9 +16,9 @@ export class TodoCountsComponent implements OnInit {
   totalCompleted:number=0;
   totalNotCompleted:number=0;
   
-   constructor(private todoService:TodoService) {
+   constructor(private todoService:TodoService, private notificationService : NotificationService) {
 
-      todoService.todoListChangedObservable.subscribe(list=> {
+      notificationService.todoListChangedObservable.subscribe(list=> {
         this.todoList = list;
         this.totalTodos =  this.todoList.length;
         this.totalCompleted = this.todoList.filter(t=> t.Completed===true).length;

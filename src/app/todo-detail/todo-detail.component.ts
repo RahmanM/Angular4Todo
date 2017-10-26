@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Todo } from "../modals/Todo";
 import { TodoService } from "../services/TodoService";
 import { fade, highlight } from "../todo-animations/Animation";
+import { NotificationService } from "../services/NotificationService";
 
 @Component({
   selector: 'todo-detail',
@@ -22,14 +23,14 @@ export class TodoDetailComponent implements OnInit {
 
   loading : boolean = false;
   
-  constructor(private todoService: TodoService) {
+  constructor(private todoService: TodoService, private notificationService : NotificationService) {
 
     /* Subscribing to todo added observable */
-    todoService.todoAddedObservable.subscribe(
+    notificationService.todoAddedObservable.subscribe(
       todo => {
         this.todoList.push(todo);
         /* inform subscribers e.g. todo count component to update their details */
-        todoService.announceTodoListChanged(this.todoList);
+        notificationService.notifyTodoListChanged(this.todoList);
       });
    }
 
@@ -38,7 +39,7 @@ export class TodoDetailComponent implements OnInit {
     /** Load todos form the database */
     this.todoService.loadTodos().subscribe(s=> {
       this.todoList = s;
-      this.todoService.announceTodoListChanged(this.todoList);
+      this.notificationService.notifyTodoListChanged(this.todoList);
       this.loading = false;
     });
   }
@@ -47,7 +48,8 @@ export class TodoDetailComponent implements OnInit {
   removeTodo(todo: Todo){
     this.todoService.deleteTodo(todo.Id).subscribe(r=> {
       this.todoList.splice(this.todoList.indexOf(todo), 1);
-      this.todoService.announceTodoListChanged(this.todoList);
+      this.notificationService.notifyTodoListChanged(this.todoList);
+      this.notificationService.announceTodoDeleted(todo);
     });   
   }
 
@@ -59,7 +61,7 @@ export class TodoDetailComponent implements OnInit {
    
         this.todoService.updateTodo(todo).subscribe(s=> {
           // broadcast the message through the shared service observable!
-          this.todoService.announceTodoListChanged(this.todoList);
+          this.notificationService.notifyTodoListChanged(this.todoList);
         })
       }
     });

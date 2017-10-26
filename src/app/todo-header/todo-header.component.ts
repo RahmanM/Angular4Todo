@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Todo, Category } from "../modals/Todo";
 import { TodoService } from "../services/TodoService";
+import { NotificationService } from "../services/NotificationService";
 
 
 @Component({
@@ -13,7 +14,7 @@ export class TodoHeaderComponent implements OnInit {
   todo: Todo = new Todo("", false, false, 0);
   categories = new Array<Category>();
 
-  constructor(private todoService: TodoService) {
+  constructor(private todoService: TodoService, private notificationService : NotificationService) {
     this.todoService.loadCategories().subscribe(c=> this.categories = c);
   }
 
@@ -23,6 +24,6 @@ export class TodoHeaderComponent implements OnInit {
   addTodo(todo:Todo) {
     this.todoService.addTodo(
       new Todo(todo.Description, false, true, todo.CategoryId)
-    ).subscribe(a=>  this.todoService.announceTodoAdded(a));
+    ).subscribe(a=>  this.notificationService.notifyTodoAdded(a));
   }
 }

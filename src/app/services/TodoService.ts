@@ -8,12 +8,6 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class TodoService {
- 
-  // Observable sources
-  private todoAdded = new Subject<Todo>();
-  private todoListChanged = new Subject<Array<Todo>>();
-  private todoList = new Subject<Array<Todo>>();
-  private categoryListChanged = new Subject<Array<Category>>();
 
   private baseUrl : string = "http://localhost/Angular4Todo/api/";
   // private url : string = "http://localhost:5898/api/todo";
@@ -22,23 +16,6 @@ export class TodoService {
     
   }
  
-  // Observable  streams
-  todoAddedObservable : Observable<Todo> = this.todoAdded.asObservable();
-  todoListChangedObservable : Observable<Array<Todo>> = this.todoListChanged.asObservable();
-  categoriesChangedObservable : Observable<Array<Category>> = this.categoryListChanged.asObservable();
- 
-  announceTodoAdded(todo: Todo) {
-    this.todoAdded.next(todo);
-  }
-
-  announceTodoListChanged(list: Array<Todo>) {
-    this.todoListChanged.next(list);
-  }
-
-  announceCategoryListChanged(list: Array<Category>) {
-    this.categoryListChanged.next(list);
-  }
-
   loadTodos = () : Observable<Array<Todo>> => {
     var response = this.httpClient.get<Array<Todo>>(this.baseUrl + "todo");
     return response;
@@ -60,8 +37,9 @@ export class TodoService {
   }
 
   loadCategories = () : Observable<Array<Category>> => {
-    var response = this.httpClient.get<Array<Category>>(this.baseUrl + "category/GetCategoriesGrouped");
+    var response = this.httpClient.get<Array<Category>>(this.baseUrl + "category");
     return response;
   }
 
 }
+

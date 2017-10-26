@@ -12,7 +12,7 @@ namespace Todos.WebApi.Controllers
   public class CategoryController : ApiController
   {
     
-    public IEnumerable<Category> GetCategoriesGrouped()
+    public IEnumerable<Category> Get()
     {
       using (var session = RavenDocumentHelper.Store.OpenSession())
       {

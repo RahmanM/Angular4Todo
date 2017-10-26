@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from "../services/TodoService";
 import { Category } from "../modals/Todo";
+import { NotificationService } from "../services/NotificationService";
 
 @Component({
   selector: 'todo-category',
@@ -9,16 +10,35 @@ import { Category } from "../modals/Todo";
 })
 export class TodoCategoryComponent implements OnInit {
 
-  categories : Array<Category>;
+  categories: Array<Category>;
 
-  constructor(private todoService:TodoService) {
-      this.todoService.loadCategories().subscribe(
-        c=> {
-          this.categories = c
-          console.log("categories=>",  this.categories);
+  constructor(private todoService: TodoService, private notificationService : NotificationService) {
+
+    this.todoService.loadCategories().subscribe(
+      c => {
+        this.categories = c
+        console.log("categories=>", this.categories);
+      }
+    );
+
+    this.notificationService.todoAddedObservable.subscribe(
+      todo => {
+        this.categories.forEach(element => {
+          if (element.Id === todo.CategoryId) {
+            element.Count++;
+          }
+        });
+      });
+
+    this.notificationService.todoDeletedObservable.subscribe(todo => {
+      this.categories.forEach(element => {
+        if (element.Id === todo.CategoryId) {
+          element.Count--;
         }
-      );
-   }
+      });
+
+    })
+  }
 
   ngOnInit() {
 

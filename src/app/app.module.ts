@@ -15,6 +15,7 @@ import { TodoSearchComponent } from './todo-search/todo-search.component';
 import { TodoPipePipe } from './todo-pipe.pipe';
 import { SpinnerComponent } from './spinner-component/spinner-component.component';
 import { TodoCategoryComponent } from './todo-category/todo-category.component';
+import { NotificationService } from "./services/NotificationService";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { TodoCategoryComponent } from './todo-category/todo-category.component';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [TodoService],
+  providers: [TodoService, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
