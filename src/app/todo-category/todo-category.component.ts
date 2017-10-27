@@ -11,13 +11,13 @@ import { NotificationService } from "../services/NotificationService";
 export class TodoCategoryComponent implements OnInit {
 
   categories: Array<Category>;
+  selectedIndex : number;
 
   constructor(private todoService: TodoService, private notificationService : NotificationService) {
 
     this.todoService.loadCategories().subscribe(
       c => {
         this.categories = c
-        console.log("categories=>", this.categories);
       }
     );
 
@@ -37,20 +37,22 @@ export class TodoCategoryComponent implements OnInit {
         }
       });
 
-    })
+    });
+    
   }
 
   ngOnInit() {
 
   }
 
-  categorySelected(id:number){
+  categorySelected(id:number, rowIndex){
     this.notificationService.notifyselectedCategoryChanged(id);
+    this.selectedIndex = rowIndex;
   }
 
   categoryReset(){
     this.notificationService.notifyselectedCategoryChanged(0);
-    console.log("clicked")
+    this.selectedIndex = -1;
   }
 
 }
