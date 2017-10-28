@@ -13,6 +13,7 @@ export class NotificationService {
   private todoListChanged = new Subject<Array<Todo>>();
   private categoryListChanged = new Subject<Array<Category>>();
   private selectedCategoryChanged = new Subject<number>();
+  private selectedCountChanged = new Subject<string>();
 
   // Observable  streams
   todoAddedObservable : Observable<Todo> = this.todoAdded.asObservable();
@@ -20,6 +21,7 @@ export class NotificationService {
   todoListChangedObservable : Observable<Array<Todo>> = this.todoListChanged.asObservable();
   categoriesChangedObservable : Observable<Array<Category>> = this.categoryListChanged.asObservable();
   selectedCategoryChangedObservable : Observable<number> = this.selectedCategoryChanged.asObservable();
+  selectedCountChangedObservable : Observable<string> = this.selectedCountChanged.asObservable();
  
   notifyTodoAdded(todo: Todo) {
     this.todoAdded.next(todo);
@@ -39,6 +41,10 @@ export class NotificationService {
 
   notifyselectedCategoryChanged(id:number){
     this.selectedCategoryChanged.next(id);
+  }
+
+  notifyselectedCountChanged(filter:string){
+    this.selectedCountChanged.next(filter);
   }
 
 }

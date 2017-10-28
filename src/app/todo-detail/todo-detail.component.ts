@@ -16,9 +16,11 @@ import { NotificationService } from "../services/NotificationService";
 export class TodoDetailComponent implements OnInit {
 
   todoList : Array<Todo>=[];
+  // Is used by the UI to apply filter for search using the pipes
   descriptionFilter : string;
   completedState : string;
   loading : boolean = false;
+  // Is used by the UI to apply filter for category using the pipes
   categoryFilter : number;
   
   constructor(private todoService: TodoService, private notificationService : NotificationService) {
@@ -34,7 +36,6 @@ export class TodoDetailComponent implements OnInit {
       // User has changed the cateogy id of the category component, so filter todos
       notificationService.selectedCategoryChangedObservable.subscribe(id=>{
         this.categoryFilter = id;
-        console.log(id);
       })
    }
 

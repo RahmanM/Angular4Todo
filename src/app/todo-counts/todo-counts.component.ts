@@ -29,4 +29,20 @@ export class TodoCountsComponent implements OnInit {
   ngOnInit() {
   }
 
+  showByCount(toShow: string){
+      if(toShow === "all"){
+        this.notificationService.notifyselectedCategoryChanged(0);
+        // todo: also should clean the search filters?
+      }
+
+      // if(toShow === "done"){
+      //   this.notificationService.notifyselectedCategoryChanged(0);
+      //   // todo: also should clean the search filters?
+      // }
+
+      // if(toShow === "notdone"){
+      //   this.notificationService.notifyselectedCategoryChanged(0);
+      //   // todo: also should clean the search filters?
+      // }
+  }
 }

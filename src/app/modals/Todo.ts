@@ -11,7 +11,7 @@ export class Todo {
   Completed: boolean;
   Show: boolean;
   Id: string;
-  CategoryId: number;
+  CategoryId: number = 1;
 }
 
 export class Category {

@@ -4,7 +4,7 @@ import { Component, OnInit, trigger, transition, style, animate, state } from '@
 export let fade = trigger("fade", [
 	transition('void <=> *', [
 		style({ opacity: 0, backgroundColor: 'grey' }),
-		animate(500)
+		animate(200)
 	])
 ])
 

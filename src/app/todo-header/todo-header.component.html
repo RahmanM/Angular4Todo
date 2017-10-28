@@ -21,16 +21,16 @@
         </div>
 
         <div class="form-group ">
-           <span>
+           <!-- <div> -->
             <select 
+             class="form-control"
               name="category" 
               [(ngModel)]="todo.CategoryId" 
             >
-              <option value="0">Please select a todo cateogory</option>
+              <!-- <option value="0">Please select a todo cateogory</option> -->
               <option *ngFor="let cat of categories" [value]="cat.Id">{{ cat.Description }}</option>
             </select>
-          </span>  
-
+          <!-- </span>   -->
 
         </div>
 
