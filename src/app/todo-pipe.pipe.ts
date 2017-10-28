@@ -30,3 +30,22 @@ export class CategoryPipe implements PipeTransform {
     } 
   }
 }
+
+@Pipe({
+  name: 'countPipe'
+})
+export class CountPipe implements PipeTransform {
+
+  transform(todos: Array<Todo>, filter:string):  Array<Todo> {
+    if(!filter || filter === "all"){
+      return todos;
+    }else{
+      if(filter === "done"){
+        return todos.filter(item => item.Completed === true);
+      }else{
+        return todos.filter(item => item.Completed === false);
+      }
+      
+    } 
+  }
+}

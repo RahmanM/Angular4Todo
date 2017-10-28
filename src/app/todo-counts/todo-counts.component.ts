@@ -24,25 +24,13 @@ export class TodoCountsComponent implements OnInit {
         this.totalCompleted = this.todoList.filter(t=> t.Completed===true).length;
         this.totalNotCompleted = this.totalTodos - this.totalCompleted;
       });
+      
    }
 
   ngOnInit() {
   }
 
   showByCount(toShow: string){
-      if(toShow === "all"){
-        this.notificationService.notifyselectedCategoryChanged(0);
-        // todo: also should clean the search filters?
-      }
-
-      // if(toShow === "done"){
-      //   this.notificationService.notifyselectedCategoryChanged(0);
-      //   // todo: also should clean the search filters?
-      // }
-
-      // if(toShow === "notdone"){
-      //   this.notificationService.notifyselectedCategoryChanged(0);
-      //   // todo: also should clean the search filters?
-      // }
+     this.notificationService.notifyselectedCountChanged(toShow);
   }
 }

@@ -1,11 +1,11 @@
 <div>
     <span>
-        Total to do: <span  class="badge alert-success" (click)="showByCount('all')">{{totalTodos}}</span>
+      Total to do:  <a href="#"><span  class="badge alert-success" (click)="showByCount('all')">{{totalTodos}}</span></a>
     </span>
     <span>
-        Total completed: <span  class="badge alert-primary" (click)="showByCount('done')">{{totalCompleted}}</span>
+        Total completed: <a href="#"><span  class="badge alert-primary" (click)="showByCount('done')">{{totalCompleted}}</span></a>
     </span>
     <span>
-        Total not completed: <span  class="badge alert-danger" (click)="showByCount('notdone')">{{totalNotCompleted}}</span>
+        Total not completed: <a href="#"><span  class="badge alert-danger" (click)="showByCount('notdone')">{{totalNotCompleted}}</span></a>
     </span>
 </div>
